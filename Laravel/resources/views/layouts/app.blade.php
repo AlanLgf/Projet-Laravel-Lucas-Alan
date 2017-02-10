@@ -21,6 +21,13 @@
     </script>
 </head>
 <body>
+
+<style type="text/css">
+    
+
+
+
+</style>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

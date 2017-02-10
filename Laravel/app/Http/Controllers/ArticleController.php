@@ -64,6 +64,7 @@ class ArticleController extends Controller
             'user_id' => Auth::user()->id,
             'title' => $request->title,
             'content' => $request->content,
+            'url_photo' => $request->url_photo,
             ]);
 
         Session::flash('message', 'Votre article à bien été créé');
@@ -129,6 +130,7 @@ class ArticleController extends Controller
             'user_id' => Auth::user()->id,
             'title' => $request->title,
             'content' => $request->content,
+            'url_photo' => $request->url_photo,
             ]);
 
         Session::flash('message', 'Votre article à bien été modifié');
