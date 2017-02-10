@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div style="text-align: center;">
+<div class="flex-center position-ref full-height">
 	<h1>Formulaire pour créer un article</h1>
 	@include ('messages.errors')
 	<form method="POST" action="{{route('articles.store')}}">

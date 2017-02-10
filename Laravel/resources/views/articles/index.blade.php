@@ -13,7 +13,7 @@
 				<li>Aucune tache</li>
 			@endforelse
 		</ul>
-	<div style="text-align: center;">
+	<div class="flex-center position-ref full-height">
 		{{ $articles->links() }}
 		</div>
 	@endsection
