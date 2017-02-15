@@ -8,10 +8,10 @@
 		{{csrf_field()}}
 		<input type="text" name="title" placeholder="Titre">
 		<br>
+		<input type="file" name="url_photo" placeholder="Url">
 		<textarea name="content" id="" cols="30" rows="10"></textarea>
 		<br>
-		<input type="file" name="url_photo" placeholder="Url">
-		<input type="submit" value="Envoyer">
+		<input class="button" type="submit" value="Envoyer">
 	</form>
 </div>
 @endsection

@@ -13,8 +13,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background: #e67e22 !important;
+                color: #fff !important;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -50,7 +50,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff !important;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -58,6 +58,9 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+             .links>a:hover{
+                color: #d35400 !important;
+             }
 
             .m-b-md {
                 margin-bottom: 30px;
