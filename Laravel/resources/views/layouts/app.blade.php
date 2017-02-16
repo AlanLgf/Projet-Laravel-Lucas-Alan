@@ -64,7 +64,17 @@
                 list-style: none !important;
                     padding: 1% 0 1% 0;
             }
-
+            .btn-link{
+                color: #e67e22 !important;
+            }
+            .btn-primary{
+                background: #e67e22 !important;
+                border-color: #d35400 !important;
+            }
+             .btn-primary:hover{
+                background: #d35400 !important;
+                border-color: #e67e22 !important;
+            }
             .flex-center {
                 align-items: center;
                 text-align: center !important;
