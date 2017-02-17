@@ -33,3 +33,5 @@ Route::resource('articles', 'ArticleController');
 
 Route::resource('photos', 'PhotoController');
 
+Route::post('contact_request','ContactController@getContactUsForm');
+

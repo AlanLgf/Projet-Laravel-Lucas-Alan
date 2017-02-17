@@ -212,6 +212,7 @@
                             <li><a href="{{ url('/user') }}">Infos</a></li>
                             <li><a href="{{ url('/articles') }}">Voir les articles</a></li>
                             <li><a href="{{ url('/articles/create') }}">Créé les articles</a></li>
+                             <li><a href="{{ url('/views/contact.blade') }}">Contact</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
