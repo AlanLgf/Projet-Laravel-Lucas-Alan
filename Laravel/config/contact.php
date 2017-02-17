@@ -52,4 +52,33 @@ return [
 
     'layout' => 'layouts.app',
 
+
+    'driver' => env('MAIL_DRIVER', 'smtp'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Contact Form Email
+    |--------------------------------------------------------------------------
+    |
+    | This defines the email address to send contact form messages to. It can
+    | be a single address, or an array of email addresses.
+    |
+    | Default to 'admin@example.com'.
+    |
+    */
+
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+
+    'port' => env('MAIL_PORT', 587),
+
+    'from' => ['address' => 'torres.74@live.fr', 'name' => 'Laravel Application'],
+
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+
+    'usename' => env('MAIL_USERNAME'),
+
+    'password' => env('MAIL_PASSWORD'),
+    
+
+
 ];

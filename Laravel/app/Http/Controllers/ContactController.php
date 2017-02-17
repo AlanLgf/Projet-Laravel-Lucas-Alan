@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\Http\Requests;
+
 
 class ContactController extends Controller
 {
@@ -11,18 +14,31 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex()
     {
-        //
+       $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+       return view('welcome')->withPosts($posts);
     }
-    
+
+    public function getAbout()
+    {
+        $first = 'Prenom';
+        $last = 'Nom';
+
+        $fullnam = $first . " " . $last;
+        $email = 'torres.74@live.fr';
+        $data = [];
+        $data = ['email'] = $email;
+        $data = ['fullname'] = $fullname;
+        return view('user')->withData($data);   
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getContact()
     {
         return view('views.contact');
     }
@@ -33,21 +49,24 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactFormRequest $request)
-{
-
-    \Mail::send('emails.contact',
-        array(
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'user_message' => $request->get('message')
-        ), function($message)
+    public function postContact(Request $request)
     {
-        $message->from('wj@wjgilmore.com');
-        $message->to('wj@wjgilmore.com', 'Admin')->subject('TODOParrot Feedback');
-    });
+      $this->validate($request, [
+        'email' => 'required|email',
+        'subject' => 'min:3',
+        'message' => 'min:10']);
 
-  return \Redirect::route('contact')->with('message', 'Thanks for contacting us!');
+      $data = array(
+        'email' => $request->email, 
+        'subject' => $request->subject, 
+        'bodyMessage' => $request->message
+         );
+
+      Mail::send('emails.contact', $data, function($message) use ($data){
+        $message->from($data['email'])
+        $message->to('torres.74@live.fr')
+        $message->subject($data['subject'])
+      });
     }
 
     /**
