@@ -16,6 +16,9 @@
 
 	<p><a href="/articles" class="btn btn-default"> Retour </a></p>
 	
+	<p><a class="btn btn-default">Like</a></p>
+	
+	
 	</form>
 
 @endsection

@@ -30,6 +30,17 @@ class ArticleController extends Controller
         return view('articles.index', [
             'articles' => $articles , 'user_connect' => $user_connect
             ]);
+        if(Input::has('like_status'))
+        {
+            $status = Input::get('likes_status');
+            $selectedStatus = Status::find($status);
+            $selectedStatus->Likes()->create([
+                'user_id' => Auth::user()->id,
+                'status_id' => $status, 
+
+                ])
+            return redirect(route('home'));
+        }
     }
 
     /**
