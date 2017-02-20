@@ -38,7 +38,7 @@ class ArticleController extends Controller
                 'user_id' => Auth::user()->id,
                 'status_id' => $status, 
 
-                ])
+                ]);
             return redirect(route('home'));
         }
     }
