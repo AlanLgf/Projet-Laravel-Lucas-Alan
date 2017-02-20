@@ -4,7 +4,7 @@
 <h1>Formulaire pour modifier un article</h1>
 @include ('messages.success')
 @include ('messages.errors')
-	<form method="POST" action="{{route('articles.update',$article->id)}}" enctype="multipart/form-data">>
+	<form method="POST" action="{{route('articles.update',$article->id)}}" enctype="multipart/form-data">
 		{{csrf_field()}}
 		<input type="hidden" name="_method" value="put">
 		<input type="text" name="title" placeholder="Titre" value="{{$article->title}}">

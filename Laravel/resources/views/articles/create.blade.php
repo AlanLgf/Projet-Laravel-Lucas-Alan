@@ -4,7 +4,7 @@
 <div class="flex-center position-ref full-height">
 	<h1>Formulaire pour créer un article</h1>
 	@include ('messages.errors')
-	<form method="POST" action="{{route('articles.store')}}">
+	<form method="POST" enctype="multipart/form-data" action="{{route('articles.store')}}">
 		{{csrf_field()}}
 		<input type="text" name="title" placeholder="Titre">
 		<br>
