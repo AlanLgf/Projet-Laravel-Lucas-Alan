@@ -8,6 +8,7 @@ use App\Article;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Validator;
 
 class ArticleController extends Controller
 {
@@ -61,25 +62,24 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,
-            [
-                'title'=> 'required',
-                'content' => 'required'
-            ],
-            [
-                'title.required' => 'Un titre est requis.',
-                'content.required' => 'Un descriptif est requis.'
-            ]);
-        
-        Article::create([
-            'user_id' => Auth::user()->id,
-            'title' => $request->title,
-            'content' => $request->content,
-            'url_photo' => $request->url_photo,
-            ]);
-
-        Session::flash('message', 'Votre article à bien été créé');
-        return redirect()->route('articles.index');
+        $validator = Validator::make($request->all(), [
+           'title' => 'required|unique:articles',
+           'content' => 'required',
+       ]);
+        $article = new Article;
+        $user_id = Auth::user()->id;
+          $imageName = 'Article_image_'. $article->id .'_utilisateur_numero_' . $user_id . '.' .
+          $request->file('url_photo')->getClientOriginalExtension();
+          $requete_nom_image = $request->file('url_photo')->move(
+            base_path() . '/public/image/', $imageName
+          );
+          $article->url_photo = '/image/'. $imageName;
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->user_id =  Auth::user()->id;
+        $article->save();
+        $request->session()->flash('alert-success', 'Article was successful created!');
+        return redirect(route('articles.index'));
     }
 
     /**
@@ -126,23 +126,17 @@ class ArticleController extends Controller
         if (Auth::check()){
             $article = Article::find($id);
 
-        
-        $this->validate($request,
-            [
-                'title'=> 'required',
-                'content' => 'required'
-            ],
-            [
-                'title.required' => 'Un titre est requis.',
-                'content.required' => 'Un descriptif est requis.'
-            ]);
-        
-        Article::find($id)->update([
-            'user_id' => Auth::user()->id,
-            'title' => $request->title,
-            'content' => $request->content,
-            'url_photo' => $request->url_photo,
-            ]);
+            $user_id = Auth::user()->id;
+            $imageName = 'Article_image_'. $article->id .'_utilisateur_numero_' . $user_id . '.' .
+            $request->file('url_photo')->getClientOriginalExtension();
+            $requete_nom_image = $request->file('url_photo')->move(
+            base_path() . '/public/image/', $imageName
+            );
+            $article->url_photo = '/image/'. $imageName;
+            $article->title = $request->title;
+            $article->content = $request->content;
+            $article->user_id =  Auth::user()->id;
+            $article->save();
 
         Session::flash('message', 'Votre article à bien été modifié');
         return redirect()->route('articles.edit', ['article'=>$article]);

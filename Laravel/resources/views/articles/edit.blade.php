@@ -18,7 +18,7 @@
 	</form>
 	<br>
 	<div class="col-md-6">
-	<a href="/articles" class="btn btn-danger"> Retour </a>
+	<a href="/articles/{{$article->id}}" class="btn btn-danger"> Retour </a>
 	</div>
 	<div class="col-md-6">
 	<button class="btn btn-info btn-xs">Like</button>
